@@ -1,3 +1,4 @@
+<template>
 <form class="form-horizontal">
     <fieldset>
     
@@ -32,3 +33,4 @@
     
     </fieldset>
     </form>
+  </template>
