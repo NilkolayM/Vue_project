@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import Autorization_page from "../views/Autorization_page.vue";
+import Client_page from "../views/Client_page.vue";
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
     path: "/autorization_page",
     name: "autorization_page",
     component: Autorization_page,
+  },
+  {
+    path: "/client_page",
+    name: "client_page",
+    component: Client_page,
   },
 ];
 

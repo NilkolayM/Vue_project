@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import { variables } from "./src/variables.js";
 export default {
   el: "#APdata",
   data() {
@@ -53,12 +52,13 @@ export default {
     };
   },
   components: {},
-  methods: {},
-  computed: {
+  methods: {
     LoggingIn() {
-      return alert(this.Login + "  " + this.Password);
+      
+      this.$router.push({ name: "client_page" });
     },
   },
+  computed: {},
 };
 </script>
 
