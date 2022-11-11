@@ -1,10 +1,14 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> |
+    <router-link to="/autorization_page">Авторизация</router-link>
   </nav>
-  <router-view />
+  <hr />
+  <router-view></router-view>
 </template>
+
+<script></script>
 
 <style>
 #app {
@@ -16,7 +20,7 @@
 }
 
 nav {
-  padding: 30px;
+  padding: 15px;
 }
 
 nav a {
