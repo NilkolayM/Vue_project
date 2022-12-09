@@ -1,8 +1,24 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/autorization_page">Авторизация</router-link>
+    <div class="container">
+      <a
+        href="/"
+        class="d-flex align-items-center mb-2 mb-md-2 me-md-auto text-dark text-decoration-none"
+      >
+      </a>
+      <header class="ClName">ОртоН</header>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a href="/" class="nav-link">Новости</a>
+        </li>
+        <li class="nav-item">
+          <a href="/about" class="nav-link">О компании</a>
+        </li>
+        <li class="nav-item">
+          <a href="/autorization_page" class="nav-link">Личный кабинет</a>
+        </li>
+      </ul>
+    </div>
   </nav>
   <hr />
   <router-view></router-view>
@@ -20,7 +36,7 @@
 }
 
 nav {
-  padding: 15px;
+  padding: 5px;
 }
 
 nav a {
@@ -30,5 +46,12 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.ClName {
+  margin: 1px 1px 1px 20px;
+  font-size: 2em;
+  color: #2c3e50;
+  text-align: left;
 }
 </style>

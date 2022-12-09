@@ -54,14 +54,12 @@ export default {
   components: {},
   methods: {
     LoggingIn() {
-      
       this.$router.push({ name: "client_page" });
     },
   },
   computed: {},
 };
 </script>
-
 <style scoped>
 #AutPage {
   font-family: Avenir, Helvetica, Arial, sans-serif;
