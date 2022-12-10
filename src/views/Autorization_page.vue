@@ -9,7 +9,7 @@
             class="form-control"
             id="IntegerInput"
             v-model="Login"
-            placeholder="name@example.com"
+            placeholder="Login"
           />
           <label for="floatingInput">Логин</label>
         </div>
