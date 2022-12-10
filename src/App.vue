@@ -9,13 +9,15 @@
       <header class="ClName">ОртоН</header>
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <a href="/" class="nav-link">Новости</a>
+          <router-link to="/" class="nav-link">Новости</router-link>
         </li>
         <li class="nav-item">
-          <a href="/about" class="nav-link">О компании</a>
+          <router-link to="/about" class="nav-link">О компании</router-link>
         </li>
         <li class="nav-item">
-          <a href="/autorization_page" class="nav-link">Личный кабинет</a>
+          <router-link to="/autorization_page" class="nav-link"
+            >Личный кабинет</router-link
+          >
         </li>
       </ul>
     </div>
@@ -42,10 +44,6 @@ nav {
 nav a {
   font-weight: bold;
   color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
 }
 
 .ClName {

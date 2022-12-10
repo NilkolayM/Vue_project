@@ -6,3 +6,15 @@ axios
         .catch(function (error) {
           this.handleError(error, this.res);
         });
+
+params: {
+            u_password: this.Password,
+            u_login: this.Login,
+          },
+
+
+if ((res.data = this.suc)) {
+            this.router.push({ name: "client_page" });
+          } else {
+            alert("Нет такого пользователя");
+          }
