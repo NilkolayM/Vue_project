@@ -17,10 +17,22 @@
             <td>{{ cell.User_name }}</td>
             <td>
               <button
+                v-if="
+                  'Недоступно' != GetCellStatus(cell.Status, cell.Client_ID)
+                "
                 id="bx"
                 class="w-40 btn btn-primary"
                 type="button"
                 @click="CellClicked(cell.Cell_ID)"
+              >
+                {{ GetCellStatus(cell.Status, cell.Client_ID) }}
+              </button>
+              <button
+                v-else
+                id="bx"
+                class="w-40 btn btn-primary"
+                type="button"
+                disabled
               >
                 {{ GetCellStatus(cell.Status, cell.Client_ID) }}
               </button>
@@ -72,10 +84,8 @@ export default {
         .then((res) => {
           switch (res.data) {
             case "sign_success":
-              this.RefreshCells();
               break;
             case "unsign_success":
-              this.RefreshCells();
               break;
             case "wrong_user":
               alert("Не пользователь");
@@ -87,6 +97,7 @@ export default {
               alert("Error!");
               break;
           }
+          this.RefreshCells();
         })
         .catch((err) => {
           console.log(err);
