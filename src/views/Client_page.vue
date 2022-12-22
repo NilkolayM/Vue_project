@@ -18,15 +18,19 @@
         </tr>
       </tbody>
     </table>
+    <text>{{ test_text }}</text>
   </div>
 </template>
 <script>
 import axios from "axios";
+import { GetToken } from "../store/token";
 
 export default {
+  el: "#page1",
   data() {
     return {
       users: [],
+      test_text: GetToken(),
     };
   },
   components: {},
@@ -34,7 +38,7 @@ export default {
   computed: {},
   mounted: function () {
     axios
-      .get("http://localhost:61815/api/User")
+      .get("http://192.168.0.112:5282/api/User")
       .then((res) => {
         this.users = res.data;
       })

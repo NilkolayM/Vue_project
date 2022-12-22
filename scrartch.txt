@@ -1,20 +1,14 @@
-axios
-        .get(process.env.VUE_APP_API_URL_ALL_USERS)
-        .then((response) => {
-          this.users = response.data.bpi;
-        })
-        .catch(function (error) {
-          this.handleError(error, this.res);
-        });
+<template>
+  <div class="news"><h1>Новости</h1></div>
+  <ClientPage></ClientPage>
+</template>
 
-params: {
-            u_password: this.Password,
-            u_login: this.Login,
-          },
+<script>
+import ClientPage from "@/views/Client_page";
 
-
-if ((res.data = this.suc)) {
-            this.router.push({ name: "client_page" });
-          } else {
-            alert("Нет такого пользователя");
-          }
+export default {
+  components: {
+    ClientPage,
+  },
+};
+</script>

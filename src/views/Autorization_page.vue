@@ -8,7 +8,6 @@
             type="Login"
             class="form-control"
             id="IntegerInput"
-            v-model="Login"
             placeholder="Login"
           />
           <label for="floatingInput">Логин</label>
@@ -19,7 +18,6 @@
             class="form-control"
             id="floatingPassword"
             placeholder="Password"
-            v-model="Password"
           />
           <label for="floatingPassword">Пароль</label>
         </div>
@@ -37,33 +35,30 @@
         </button>
       </form>
     </div>
-    <text>{{ out_text }}</text>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { SetToken } from "../store/token";
+
+const s = "success";
+
 export default {
-  data() {
-    return {
-      Login: null,
-      Password: null,
-      suc: "success",
-    };
-  },
+  data() {},
   components: {},
   methods: {
     LoggingIn() {
+      SetToken("test_token1");
       axios
         .get(
-          "http://localhost:61815/api/User/UserExist?u_password=" +
-            this.Password +
+          "http://192.168.0.112:5282/api/User/UserExist?u_password=" +
+            document.getElementById("floatingPassword").value +
             "&u_login=" +
-            this.Login
+            document.getElementById("IntegerInput").value
         )
         .then((res) => {
-          console.log(res);
-          if (res.data == this.suc) {
+          if (res.data == s) {
             this.$router.push({ name: "client_page" });
           } else {
             alert("Нет такого пользователя");
@@ -77,6 +72,7 @@ export default {
   computed: {},
 };
 </script>
+
 <style scoped>
 #AutPage {
   font-family: Avenir, Helvetica, Arial, sans-serif;
