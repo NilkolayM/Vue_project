@@ -12,3 +12,8 @@ export default {
   },
 };
 </script>
+
+
+<text v-if="GetCellStatus(cell.Status)">Записаться</text>
+                <text v-else-if="IsItMyCell(cell.User_ID)">Отменить</text>
+                <text v-else>Недоступно</text>
