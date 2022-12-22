@@ -7,7 +7,7 @@
             <th>Время</th>
             <th>Место</th>
             <th>Специалист</th>
-            <th>Состояние</th>
+            <th></th>
           </tr>
         </thead>
         <tbody :key="UpdateIt">
