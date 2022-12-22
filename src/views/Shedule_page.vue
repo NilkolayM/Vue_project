@@ -1,36 +1,35 @@
 <template>
-  <div class="Client_page">
-    <table class="table table-stripped">
-      <thead>
-        <tr>
-          <th>ФИО</th>
-          <th>Номер телефона</th>
-          <th>Email</th>
-          <th>ID пользователя</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in users" :key="user.User_ID">
-          <td>{{ user.User_Name }}</td>
-          <td>{{ user.User_Phone_num }}</td>
-          <td>{{ user.User_email }}</td>
-          <td>{{ user.User_ID }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <text>{{ test_text }}</text>
+  <div class="Shedule_page">
+    <div class="container">
+      <table class="table table-stripped">
+        <thead>
+          <tr>
+            <th>Время</th>
+            <th>Место</th>
+            <th>Специалист</th>
+            <th>Состояние</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="cell in Cells" :key="cell.Date_time">
+            <td>{{ cell.Date_time }}</td>
+            <td>{{ cell.Place }}</td>
+            <td>{{ cell.User_name }}</td>
+            <td>{{ cell.Status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 <script>
 import axios from "axios";
-import { GetToken } from "../store/token";
 
 export default {
   el: "#page1",
   data() {
     return {
-      users: [],
-      test_text: GetToken(),
+      Cells: [],
     };
   },
   components: {},
@@ -38,9 +37,9 @@ export default {
   computed: {},
   mounted: function () {
     axios
-      .get("http://192.168.0.112:5282/api/User")
+      .get("http://192.168.0.112:5282/api/Shedule")
       .then((res) => {
-        this.users = res.data;
+        this.Cells = res.data;
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +49,7 @@ export default {
 </script>
 
 <style scoped>
-#Client_page {
+#Shedule_page {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

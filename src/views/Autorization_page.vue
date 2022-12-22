@@ -40,16 +40,14 @@
 
 <script>
 import axios from "axios";
-import { SetToken } from "../store/token";
 
-const s = "success";
+const s = "not_a_user";
 
 export default {
   data() {},
   components: {},
   methods: {
     LoggingIn() {
-      SetToken("test_token1");
       axios
         .get(
           "http://192.168.0.112:5282/api/User/UserExist?u_password=" +
@@ -58,7 +56,8 @@ export default {
             document.getElementById("IntegerInput").value
         )
         .then((res) => {
-          if (res.data == s) {
+          if (res.data != s) {
+            localStorage.setItem("token", res.data);
             this.$router.push({ name: "client_page" });
           } else {
             alert("Нет такого пользователя");

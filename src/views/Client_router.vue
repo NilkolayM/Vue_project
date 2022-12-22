@@ -4,17 +4,16 @@
       <a
         class="d-flex align-items-center mb-md-0 me-md-1 text-dark text-decoration-none"
       >
-        <header class="ClName">ОртоН</header>
         <ul class="nav nav-pills">
+          <li class="TextLC">Личный кабинет клиента</li>
           <li class="nav-item">
-            <router-link to="/" class="nav-link">Новости</router-link>
+            <router-link to="/client" class="nav-link"
+              >test_user_list</router-link
+            >
           </li>
           <li class="nav-item">
-            <router-link to="/about" class="nav-link">О компании</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/autorization_page" class="nav-link"
-              >Личный кабинет</router-link
+            <router-link to="/shedule_page" class="nav-link"
+              >Запись на приём</router-link
             >
           </li>
         </ul>
@@ -36,14 +35,17 @@
   color: #2c3e50;
 }
 
-.nav-item {
-  margin: 2px 5px 0px 5px;
+nav {
+  padding: 5px;
+}
+
+nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
-.ClName {
-  margin: 1px 1px 10px 10px;
+.TextLC {
+  margin: 1px 1px 1px 10px;
   font-size: 1.5em;
   color: #2c3e50;
   text-align: left;

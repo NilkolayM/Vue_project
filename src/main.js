@@ -2,7 +2,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
-import router1 from "./router";
+import router1 from "./router/routerN1";
 import store from "./store";
 import "bootstrap/dist/css/bootstrap.css";
 import "D:/vueJS/Vue_project/node_modules/@popperjs/core/lib";

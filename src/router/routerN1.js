@@ -3,6 +3,7 @@ import News_page from "../views/News_page.vue";
 import Autorization_page from "../views/Autorization_page.vue";
 import Client_page from "../views/Client_page.vue";
 import Shedule_page from "../views/Shedule_page.vue";
+import Client_router from "../views/Client_router.vue";
 
 const routes = [
   {
@@ -25,14 +26,21 @@ const routes = [
     component: Autorization_page,
   },
   {
-    path: "/client_page",
-    name: "client_page",
-    component: Client_page,
-  },
-  {
-    path: "/shedule_page",
-    name: "shedule_page",
-    component: Shedule_page,
+    path: "/client",
+    name: "client_router",
+    component: Client_router,
+    children: [
+      {
+        path: "",
+        name: "client_page",
+        component: Client_page,
+      },
+      {
+        path: "/shedule_page",
+        name: "shedule_page",
+        component: Shedule_page,
+      },
+    ],
   },
 ];
 

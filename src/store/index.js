@@ -1,7 +1,14 @@
 import { createStore } from "vuex";
+import MyToken from "./token";
+
+var Token = new MyToken("null");
 
 export default createStore({
-  state: {},
+  state() {
+    return {
+      AppToken: Token,
+    };
+  },
   getters: {},
   mutations: {},
   actions: {},

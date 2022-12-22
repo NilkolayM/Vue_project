@@ -1,21 +1,14 @@
 class MyToken {
+  token;
   constructor(data) {
     this.token = data;
   }
-  GToken() {
+  get token() {
     return this.token;
   }
-  SToken(data) {
+  set token(data) {
     this.token = data;
   }
 }
 
-let tkn = new MyToken("my_token1");
-
-export function SetToken(data) {
-  tkn.SToken(data);
-}
-
-export function GetToken() {
-  return tkn.GToken();
-}
+export default MyToken;

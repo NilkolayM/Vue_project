@@ -1,36 +1,37 @@
 <template>
   <div class="Client_page">
-    <table class="table table-stripped">
-      <thead>
-        <tr>
-          <th>ФИО</th>
-          <th>Номер телефона</th>
-          <th>Email</th>
-          <th>ID пользователя</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in users" :key="user.User_ID">
-          <td>{{ user.User_Name }}</td>
-          <td>{{ user.User_Phone_num }}</td>
-          <td>{{ user.User_email }}</td>
-          <td>{{ user.User_ID }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <text>{{ test_text }}</text>
+    <div class="container">
+      <table class="table table-stripped">
+        <thead>
+          <tr>
+            <th>ФИО</th>
+            <th>Номер телефона</th>
+            <th>Email</th>
+            <th>ID пользователя</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="user in users" :key="user.User_ID">
+            <td>{{ user.User_Name }}</td>
+            <td>{{ user.User_Phone_num }}</td>
+            <td>{{ user.User_email }}</td>
+            <td>{{ user.User_ID }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <text>{{ test_token }}</text>
   </div>
 </template>
 <script>
 import axios from "axios";
-import { GetToken } from "../store/token";
 
 export default {
   el: "#page1",
   data() {
     return {
       users: [],
-      test_text: GetToken(),
+      test_token: localStorage.getItem("token"),
     };
   },
   components: {},
