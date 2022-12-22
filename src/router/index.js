@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import News_page from "../views/News_page.vue";
 import Autorization_page from "../views/Autorization_page.vue";
 import Client_page from "../views/Client_page.vue";
+import Shedule_page from "../views/Shedule_page.vue";
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     path: "/client_page",
     name: "client_page",
     component: Client_page,
+  },
+  {
+    path: "/shedule_page",
+    name: "shedule_page",
+    component: Shedule_page,
   },
 ];
 
