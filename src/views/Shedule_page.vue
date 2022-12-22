@@ -27,15 +27,6 @@
               >
                 {{ GetCellStatus(cell.Status, cell.Client_ID) }}
               </button>
-              <button
-                v-else
-                id="bx"
-                class="w-40 btn btn-primary"
-                type="button"
-                disabled
-              >
-                {{ GetCellStatus(cell.Status, cell.Client_ID) }}
-              </button>
             </td>
           </tr>
         </tbody>
