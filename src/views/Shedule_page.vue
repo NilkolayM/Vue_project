@@ -33,19 +33,23 @@
       </table>
     </div>
   </div>
+  <clientpage></clientpage>
 </template>
 <script>
 import axios from "axios";
+import Client_page from "./Client_page.vue";
 
 export default {
-  el: "#page1",
+  el: "#page_shedule",
   data() {
     return {
       Cells: [],
       UpdateIt: false,
     };
   },
-  components: {},
+  components: {
+    clientpage: Client_page,
+  },
   watch: {},
   methods: {
     GetCellStatus(status, ID) {
@@ -58,7 +62,7 @@ export default {
         .get("http://192.168.0.112:5282/api/Shedule")
         .then((res) => {
           this.Cells = res.data;
-          this.UpdateTt != this.UpdateTt;
+          this.UpdateIt != this.UpdateIt;
         })
         .catch((err) => {
           console.log(err);

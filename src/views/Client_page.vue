@@ -27,7 +27,7 @@
 import axios from "axios";
 
 export default {
-  el: "#page1",
+  el: "page_client",
   data() {
     return {
       users: [],
