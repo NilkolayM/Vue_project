@@ -21,11 +21,6 @@
           />
           <label for="floatingPassword">Пароль</label>
         </div>
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me" /> Запомнить пароль
-          </label>
-        </div>
         <button
           class="w-50 btn btn-lg btn-primary"
           type="button"
@@ -33,6 +28,10 @@
         >
           Вход
         </button>
+        <div id="wMessage" v-if="warning != ''" :key="warning">
+          <br />
+          <label>{{ warning }}</label>
+        </div>
       </form>
     </div>
   </div>
@@ -40,27 +39,48 @@
 
 <script>
 import axios from "axios";
+import { AutorizationLink } from "../store/linksAPI.js";
 
-const s = "not_a_user";
+const wu = "not_a_user";
+const wp = "wrong_password";
 
 export default {
-  data() {},
+  data() {
+    return {
+      warning: "",
+    };
+  },
   components: {},
   methods: {
     LoggingIn() {
+      var query =
+        "?" +
+        new URLSearchParams({
+          login: document.getElementById("IntegerInput").value,
+          password: document.getElementById("floatingPassword").value,
+        });
+
       axios
-        .get(
-          "http://192.168.0.112:5282/api/User/UserExist?u_password=" +
-            document.getElementById("floatingPassword").value +
-            "&u_login=" +
-            document.getElementById("IntegerInput").value
-        )
+        .get(AutorizationLink + query)
         .then((res) => {
-          if (res.data != s) {
-            localStorage.setItem("token", res.data);
-            this.$router.push({ name: "client_page" });
-          } else {
-            alert("Нет такого пользователя");
+          switch (res.data) {
+            case wu:
+              {
+                this.warning = "Пользователь не найден";
+              }
+              break;
+            case wp:
+              {
+                this.warning = "Неверный пароль";
+              }
+              break;
+            default:
+              {
+                localStorage.setItem("token", res.data[0].answer);
+                localStorage.setItem("role", res.data[0].role);
+                this.$router.push({ name: "client_router" });
+              }
+              break;
           }
         })
         .catch((err) => {
@@ -79,5 +99,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+#wMessage {
+  font-size: 1em;
+  color: #d80723;
 }
 </style>
