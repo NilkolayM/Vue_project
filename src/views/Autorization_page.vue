@@ -38,11 +38,8 @@
 </template>
 
 <script>
-import axios from "axios";
-import { AutorizationLink } from "../store/linksAPI.js";
-
-const wu = "not_a_user";
-const wp = "wrong_password";
+import MyToken from "../store/token.js";
+import Redirect from "../store/RoleRedirect.js";
 
 export default {
   data() {
@@ -53,39 +50,28 @@ export default {
   components: {},
   methods: {
     LoggingIn() {
-      var query =
-        "?" +
-        new URLSearchParams({
-          login: document.getElementById("IntegerInput").value,
-          password: document.getElementById("floatingPassword").value,
-        });
-
-      axios
-        .get(AutorizationLink + query)
-        .then((res) => {
-          switch (res.data) {
-            case wu:
-              {
-                this.warning = "Пользователь не найден";
-              }
-              break;
-            case wp:
-              {
-                this.warning = "Неверный пароль";
-              }
-              break;
-            default:
-              {
-                localStorage.setItem("token", res.data[0].answer);
-                localStorage.setItem("role", res.data[0].role);
-                this.$router.push({ name: "client_router" });
-              }
-              break;
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      MyToken.LoggingIn(
+        document.getElementById("IntegerInput").value,
+        document.getElementById("floatingPassword").value
+      ).then((res) => {
+        switch (res) {
+          case "Пользователь не найден":
+            {
+              this.warning = "Пользователь не найден";
+            }
+            break;
+          case "Неверный пароль":
+            {
+              this.warning = "Неверный пароль";
+            }
+            break;
+          default:
+            {
+              Redirect(this.$router);
+            }
+            break;
+        }
+      });
     },
   },
   computed: {},

@@ -7,9 +7,7 @@
         <ul class="nav nav-pills">
           <li class="TextLC">Личный кабинет клиента</li>
           <li class="nav-item">
-            <router-link to="/client" class="nav-link"
-              >test_user_list</router-link
-            >
+            <router-link to="/client" class="nav-link">Клиент</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/shedule_page" class="nav-link"
@@ -46,7 +44,7 @@ nav a {
 
 .TextLC {
   margin: 1px 1px 1px 10px;
-  font-size: 1.5em;
+  font-size: 1em;
   color: #2c3e50;
   text-align: left;
 }
