@@ -1,6 +1,11 @@
 <template>
   <div class="ExitButton">
-    <button id="bx" class="w-40 btn btn-primary" type="button" @click="Exit()">
+    <button
+      id="ExtBtn"
+      class="w-40 btn btn-primary"
+      type="button btn-outline-success"
+      @click="Exit()"
+    >
       Выход
     </button>
   </div>
@@ -37,12 +42,11 @@ export default {
 };
 </script>
 
-<style scoped>
-#Client_page {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: start;
-  color: #2c3e50;
+<style>
+.ExitButton {
+  float: right;
+}
+#ExtBtn {
+  float: right;
 }
 </style>

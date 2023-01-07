@@ -14,6 +14,7 @@
               >Запись на приём</router-link
             >
           </li>
+          <li><Exit> </Exit></li>
         </ul>
       </a>
       <hr />
@@ -22,7 +23,15 @@
   <router-view></router-view>
 </template>
 
-<script></script>
+<script>
+import ExitButton from "../Buttons/ExitButton.vue";
+
+export default {
+  components: {
+    Exit: ExitButton,
+  },
+};
+</script>
 
 <style>
 #app {

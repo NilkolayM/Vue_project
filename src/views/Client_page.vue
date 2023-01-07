@@ -1,6 +1,5 @@
 <template>
   <div class="Client_page">
-    <Exit></Exit>
     <div class="container">
       <table class="table table-stripped">
         <thead>
@@ -25,7 +24,6 @@
 </template>
 <script>
 import axios from "axios";
-import ExitButton from "./Buttons/ExitButton.vue";
 
 export default {
   el: "page_client",
@@ -35,9 +33,7 @@ export default {
       test_token: localStorage.getItem("token"),
     };
   },
-  components: {
-    Exit: ExitButton,
-  },
+  components: {},
   methods: {},
   computed: {},
   mounted: function () {
