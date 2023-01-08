@@ -32,6 +32,7 @@ class MyToken {
             break;
           default: {
             localStorage.setItem("token", res.data[0].answer);
+            localStorage.setItem("is_autorized", true);
             if (res.data[0].role == null) {
               tmp = "client";
               localStorage.setItem("role", "client");
@@ -51,7 +52,7 @@ class MyToken {
 
   static async UpdateToken() {
     if (
-      localStorage.getItem("token") == "undefined" ||
+      localStorage.getItem("token") == undefined ||
       localStorage.getItem("token") == null
     )
       return "Пользователь не найден";
@@ -67,12 +68,14 @@ class MyToken {
         switch (res.data) {
           case wu:
             {
+              localStorage.setItem("is_autorized", false);
               localStorage.removeItem("token");
               tmp = "Пользователь не найден";
             }
             break;
           case it:
             {
+              localStorage.setItem("is_autorized", false);
               localStorage.removeItem("token");
               tmp = "Устаревший токен";
             }

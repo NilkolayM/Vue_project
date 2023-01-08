@@ -10,6 +10,7 @@ import D_router from "../views/Routers/D_router.vue";
 import S_router from "../views/Routers/S_router.vue";
 import MyToken from "../store/token.js";
 import Redirect from "../store/RoleRedirect.js";
+import history_page from "../views/history_page.vue";
 
 const routes = [
   {
@@ -45,6 +46,11 @@ const routes = [
         path: "/shedule_page",
         name: "shedule_page",
         component: Shedule_page,
+      },
+      {
+        path: "/history_page",
+        name: "history_page",
+        component: history_page,
       },
     ],
   },

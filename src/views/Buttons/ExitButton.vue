@@ -2,7 +2,7 @@
   <div class="ExitButton">
     <button
       id="ExtBtn"
-      class="w-40 btn btn-primary"
+      class="btn btn-primary"
       type="button btn-outline-success"
       @click="Exit()"
     >
@@ -16,9 +16,6 @@ import axios from "axios";
 
 export default {
   el: "ExitButton",
-  data() {
-    return {};
-  },
   methods: {
     Exit() {
       var query =
@@ -35,6 +32,7 @@ export default {
         .finally(() => {
           localStorage.removeItem("token");
           localStorage.removeItem("role");
+          localStorage.setItem("is_autorized", false);
           this.$router.push({ name: "autorization_page" });
         });
     },
@@ -44,9 +42,6 @@ export default {
 
 <style>
 .ExitButton {
-  float: right;
-}
-#ExtBtn {
   float: right;
 }
 </style>

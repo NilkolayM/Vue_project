@@ -1,20 +1,25 @@
 <template>
-  <nav>
+  <nav class="row">
     <div class="container">
-      <a
-        class="d-flex align-items-center mb-md-0 me-md-1 text-dark text-decoration-none"
-      >
+      <a class="text-decoration-none">
         <ul class="nav nav-pills">
-          <li class="TextLC">Личный кабинет клиента</li>
-          <li class="nav-item">
+          <li class="col order-first align-self-center TextLC">
+            Личный кабинет клиента
+          </li>
+          <li class="nav-item col col-auto align-self-center">
             <router-link to="/client" class="nav-link">Клиент</router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item col col-auto align-self-center">
             <router-link to="/shedule_page" class="nav-link"
               >Запись на приём</router-link
             >
           </li>
-          <li><Exit> </Exit></li>
+          <li class="nav-item col-auto col align-self-center">
+            <router-link to="/history_page" class="nav-link"
+              >История посещений</router-link
+            >
+          </li>
+          <li Class="col col-auto order-last align-self-center"><Exit /></li>
         </ul>
       </a>
       <hr />
@@ -34,27 +39,8 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 5px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
 .TextLC {
-  margin: 1px 1px 1px 10px;
   font-size: 1em;
   color: #2c3e50;
-  text-align: left;
 }
 </style>

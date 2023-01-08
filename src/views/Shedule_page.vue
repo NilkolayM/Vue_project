@@ -1,18 +1,20 @@
 <template>
-  <div class="Shedule_page">
-    <div class="container">
-      <table class="table table-stripped">
+  <div class="Shedule_page d-flex justify-content-evenly">
+    <div class="container border">
+      <table class="table table-hover">
         <thead>
           <tr>
+            <th>Дата</th>
             <th>Время</th>
             <th>Место</th>
             <th>Специалист</th>
             <th></th>
           </tr>
         </thead>
-        <tbody :key="UpdateIt">
+        <tbody class="table-group-divider md-center" :key="UpdateIt">
           <tr v-for="cell in Cells" :key="cell.Date_time">
-            <td>{{ cell.Date_time }}</td>
+            <td nowrap>{{ cell.Date_time.slice(5, 10) }}</td>
+            <td>{{ cell.Date_time.slice(11, 16) }}</td>
             <td>{{ cell.Place }}</td>
             <td>{{ cell.User_name }}</td>
             <td>
@@ -21,7 +23,7 @@
                   'Недоступно' != GetCellStatus(cell.Status, cell.Client_ID)
                 "
                 id="bx"
-                class="w-40 btn btn-primary"
+                class="w-40 btn btn-primary btn-sm"
                 type="button"
                 @click="CellClicked(cell.Cell_ID)"
               >
@@ -31,13 +33,26 @@
           </tr>
         </tbody>
       </table>
+      <div class="container ButtonPageSelect">
+        <div class="row align-items-center">
+          <div class="col order-first">
+            <button type="button" class="btn btn-primary btn-sm">
+              На предыдущую страницу
+            </button>
+          </div>
+          <div class="col order-last">
+            <button type="button" class="btn btn-primary btn-sm">
+              На следующую страницу
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <clientpage></clientpage>
 </template>
 <script>
 import axios from "axios";
-import Client_page from "./Client_page.vue";
+import { SheduleInfo, SheduleAssign } from "../store/linksAPI.js";
 
 export default {
   el: "#page_shedule",
@@ -47,19 +62,16 @@ export default {
       UpdateIt: false,
     };
   },
-  components: {
-    clientpage: Client_page,
-  },
   watch: {},
   methods: {
     GetCellStatus(status, ID) {
       if (status == 0) return "Записаться";
-      else if (localStorage.getItem("token") === ID) return "Отменить";
+      else if (localStorage.getItem("user") === ID) return "Отменить";
       else return "Недоступно";
     },
     RefreshCells() {
       axios
-        .get("http://192.168.0.112:5282/api/Shedule")
+        .get(SheduleInfo)
         .then((res) => {
           this.Cells = res.data;
           this.UpdateIt != this.UpdateIt;
@@ -69,27 +81,34 @@ export default {
         });
     },
     CellClicked(ID) {
+      var query =
+        "?" +
+        new URLSearchParams({
+          token: localStorage.getItem("token"),
+          cell: ID,
+        });
       axios
-        .put(
-          "http://192.168.0.112:5282/api/Shedule?user1=" +
-            localStorage.getItem("token") +
-            "&cell1=" +
-            ID
-        )
+        .put(SheduleAssign + query)
         .then((res) => {
-          switch (res.data) {
+          switch (res.data.status) {
             case "sign_success":
+              {
+                localStorage.setItem("token", res.data.token);
+              }
               break;
             case "unsign_success":
-              break;
-            case "wrong_user":
-              alert("Не пользователь");
+              {
+                localStorage.setItem("token", res.data.token);
+              }
               break;
             case "cant_sign":
-              alert("Записан кто то ещё");
+              {
+                localStorage.setItem("token", res.data.token);
+                //alert("Записан кто то ещё");
+              }
               break;
             default:
-              alert("Error!");
+              this.$router.push({ name: "autorization_page" });
               break;
           }
           this.RefreshCells();
@@ -106,7 +125,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+.ButtonPageSelect {
+  width: auto;
+  margin-bottom: 1%;
+}
+
 #Shedule_page {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

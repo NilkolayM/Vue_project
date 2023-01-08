@@ -1,11 +1,9 @@
 <template>
-  <nav>
+  <nav class="row">
     <div class="container">
-      <a
-        class="d-flex align-items-center mb-md-0 me-md-1 text-dark text-decoration-none"
-      >
-        <header class="ClName">ОртоН</header>
-        <ul class="nav nav-pills">
+      <a class="d-flex text-decoration-none">
+        <div class="ClName col order-first">ОртоН</div>
+        <ul class="nav col order-last nav-pills col-md-4">
           <li class="nav-item">
             <router-link to="/" class="nav-link">Новости</router-link>
           </li>
@@ -31,17 +29,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  align-items: stretch;
   color: #2c3e50;
 }
 
 .nav-item {
-  margin: 2px 5px 0px 5px;
+  margin: 0px 0px 0px 0px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
 .ClName {
-  margin: 1px 1px 10px 10px;
   font-size: 1.5em;
   color: #2c3e50;
   text-align: left;
